@@ -10,21 +10,20 @@ body {
     margin: 0;
     height: 100vh;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff4d6d, #ff758f);
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     overflow: hidden;
     color: white;
 }
 
-.card {
+.container {
+    text-align: center;
     background: rgba(255,255,255,0.15);
     padding: 30px;
     border-radius: 20px;
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 button {
@@ -37,12 +36,12 @@ button {
 }
 
 #yes {
-    background: #00ff9c;
+    background-color: #00ff9c;
     color: black;
 }
 
 #no {
-    background: #ff1e56;
+    background-color: #ff4d6d;
     color: white;
     position: absolute;
 }
@@ -54,10 +53,10 @@ button {
 .heart {
     position: fixed;
     font-size: 24px;
-    animation: floatUp 4s linear forwards;
+    animation: float 4s linear forwards;
 }
 
-@keyframes floatUp {
+@keyframes float {
     from { transform: translateY(100vh); opacity: 1; }
     to { transform: translateY(-10vh); opacity: 0; }
 }
@@ -66,76 +65,56 @@ button {
 
 <body>
 
-<div class="card" id="page1">
+<div class="container" id="page1">
     <h2>Will you be my Valentine? 💖</h2>
     <button id="yes">YES 💘</button>
     <button id="no">NO 😜</button>
 </div>
 
-<div class="card hidden" id="page2">
-    <h2>My Love ❤️</h2>
+<div class="container hidden" id="page2">
+    <h2>She said YES ❤️</h2>
     <p>
-        You are my strength, my peace, and my forever.  
-        Together we are unstoppable — a true power couple 💍✨  
+        You are my forever, my strength, my happiness.  
+        Together we are a power couple 💍✨
     </p>
-    <h3 id="timer"></h3>
 </div>
 
 <script>
-const yes = document.getElementById("yes");
-const no = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
 const page1 = document.getElementById("page1");
 const page2 = document.getElementById("page2");
 
-// NO button runs away (works on mobile + desktop)
-no.addEventListener("touchstart", moveNo);
-no.addEventListener("mouseover", moveNo);
+// NO button runs away
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
 
 function moveNo() {
     const x = Math.random() * (window.innerWidth - 100);
     const y = Math.random() * (window.innerHeight - 100);
-    no.style.left = x + "px";
-    no.style.top = y + "px";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
 }
 
 // YES button
-yes.addEventListener("click", () => {
+yesBtn.addEventListener("click", () => {
     page1.classList.add("hidden");
     page2.classList.remove("hidden");
     hearts();
-    countdown();
 });
 
-// Hearts burst
+// Hearts animation
 function hearts() {
     setInterval(() => {
-        const h = document.createElement("div");
-        h.className = "heart";
-        h.innerHTML = "💖";
-        h.style.left = Math.random() * 100 + "vw";
-        document.body.appendChild(h);
-        setTimeout(() => h.remove(), 4000);
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
     }, 300);
-}
-
-// Countdown
-function countdown() {
-    const target = new Date("2026-02-14T00:00:00").getTime();
-    setInterval(() => {
-        const now = new Date().getTime();
-        const diff = target - now;
-
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const m = Math.floor((diff / (1000 * 60)) % 60);
-        const s = Math.floor((diff / 1000) % 60);
-
-        document.getElementById("timer").innerHTML =
-            `⏳ ${d}d ${h}h ${m}m ${s}s to Valentine 💘`;
-    }, 1000);
 }
 </script>
 
 </body>
 </html>
-
