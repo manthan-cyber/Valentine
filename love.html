@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Love 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 25px;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      color: #ff4d6d;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.15rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .power {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ff4d6d;
+      font-size: 1.2rem;
+    }
+
+    .countdown {
+      margin-top: 30px;
+      font-size: 1.4rem;
+      color: #ff4d6d;
+      font-weight: bold;
+    }
+
+    .time {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>My Valentine 💖</h1>
+
+    <p>
+      With all my heart, I want you to know this —  
+      you are my strength, my peace, and my forever.  
+      Together, we are not just a couple…  
+      we are a <b>POWER COUPLE</b>.
+    </p>
+
+    <p class="power">
+      Side by side, heart to heart,  
+      we grow, we win, we love ❤️
+    </p>
+
+    <div class="countdown">
+      Countdown to Valentine’s Day 💘
+    </div>
+
+    <div class="time" id="timer"></div>
+  </div>
+
+  <script>
+    // Celebrate on load 🎉
+    confetti({
+      particleCount: 300,
+      spread: 160,
+      origin: { y: 0.6 }
+    });
+
+    // Countdown to 14 Feb 2026
+    const targetDate = new Date("February 14, 2026 00:00:00").getTime();
+    const timerEl = document.getElementById("timer");
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff < 0) {
+        timerEl.innerHTML = "Happy Valentine’s Day, my love ❤️";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      timerEl.innerHTML = `
+        ${days} Days ❤️ ${hours} Hrs 💖  
+        ${minutes} Min 💘 ${seconds} Sec
+      `;
+    }, 1000);
+  </script>
+
+</body>
+</html>
