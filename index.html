@@ -160,23 +160,15 @@
     yesBtn.addEventListener("click", () => {
       // Big celebration
       confetti({
-        particleCount: 250,
-        spread: 160,
+        particleCount: 300,
+        spread: 180,
         origin: { y: 0.6 }
       });
 
       setTimeout(() => {
-        confetti({
-          particleCount: 150,
-          spread: 100,
-          origin: { x: 0.2, y: 0.5 }
-        });
-        confetti({
-          particleCount: 150,
-          spread: 100,
-          origin: { x: 0.8, y: 0.5 }
-        });
-      }, 400);
+        window.location.href = "love.html";
+      }, 1500);
+    });
 
       typeMessage(
         "Yayyy!! 💕 I knew it! Thank you for being the most beautiful part of my life 😘❤️",
